@@ -1,0 +1,73 @@
+{
+  "startDate": "2025-04-17T13:10:58.000Z",
+  "shipper": "7FRW",
+  "consignee": "BCBM",
+  "billTo": "KTSI",
+  "orderBy": "KTSI",
+  "weightUnit": "LBS",
+  "commodity": "FAK",
+  "temperatureUnits": "Frnhgt",
+  "chargeItemCode": "LHF",
+  "chargeRateUnit": "FLT",
+  "chargeRate": 1175.0,
+  "currency": "US$",
+  "remark": "Pickup: MACROPOINT IS REQUIRED BY CUSTOMER FROM SHIPPER TO RECEIVER. FAILURE TO COMPLY WILL RESULT IN $100 DEDUCTION | Delivery: Main - FCFS",
+  "stops": [
+    {
+      "eventCode": "LLD",
+      "stopType": "PUP",
+      "companyID": "7FRW",
+      "sequence": 1,
+      "billable": true,
+      "earliestDate": "2025-01-28T11:00:00.000Z",
+      "latestDate": "2025-01-28T11:00:00.000Z",
+      "arrivalDate": "2025-01-28T11:00:00.000Z",
+      "departureDate": "2025-01-28T11:00:00.000Z",
+      "referenceNumbers": [
+        {
+          "referenceType": "REF",
+          "value": "1289969",
+          "referenceTable": "stops"
+        },
+        {
+          "referenceType": "REF",
+          "value": "10271",
+          "referenceTable": "stops"
+        },
+        {
+          "referenceType": "LOAD",
+          "value": "10271",
+          "referenceTable": "stops"
+        }
+      ]
+    },
+    {
+      "eventCode": "LUL",
+      "stopType": "DRP",
+      "companyID": "BCBM",
+      "sequence": 2,
+      "billable": true,
+      "earliestDate": "2025-01-29T08:00:00.000Z",
+      "latestDate": "2025-01-29T15:00:00.000Z",
+      "arrivalDate": "2025-01-29T08:00:00.000Z",
+      "departureDate": "2025-01-29T15:00:00.000Z",
+      "referenceNumbers": [
+        {
+          "referenceType": "REF",
+          "value": "10271",
+          "referenceTable": "stops"
+        }
+      ]
+    }
+  ],
+  "trailerType1": "VAN",
+  "revType1": "LOGCOM",
+  "revType2": "STD",
+  "revType3": "OUT",
+  "revType4": "OTR",
+  "referenceType1": "LOAD",
+  "referenceType2": "REF",
+  "referenceNumber1": "10271",
+  "referenceNumber2": "0567696",
+  "status": "AVL"
+}
