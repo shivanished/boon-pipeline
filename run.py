@@ -27,10 +27,8 @@ def run():
             with open(input_file, "r") as f:
                 extraction_data = json.load(f)
             
-            # Process the extraction JSON
             tms_request = agent.process(extraction_data)
             
-            # Create an output file name based on the input file name
             output_file = output_dir / f"{input_file.stem}_tms.json"
             with open(output_file, "w") as f_out:
                 json.dump(tms_request.model_dump(exclude_none=True), f_out, indent=2)
