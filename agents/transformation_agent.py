@@ -31,14 +31,9 @@ class WorkflowState(TypedDict):
 
 
 class TMSTransformationAgent:
-    """
-    Agent-based workflow for transforming extraction data to TMS format.
-    """
     
     def __init__(self, api_key: Optional[str] = None):
         """
-        Initialize the transformation agent.
-        
         Args:
             api_key: API key for Anthropic
         """
@@ -58,21 +53,18 @@ class TMSTransformationAgent:
         # Create StateGraph
         workflow = StateGraph(WorkflowState)
         
-        # Define nodes
         workflow.add_node("extract_entities", self._extract_entities)
         workflow.add_node("process_stops", self._process_stops)
         workflow.add_node("determine_rev_types", self._determine_rev_types)
         workflow.add_node("determine_commodity", self._determine_commodity)
         workflow.add_node("create_tms_request", self._create_tms_request)
         
-        # Define edges
         workflow.add_edge("extract_entities", "process_stops")
         workflow.add_edge("process_stops", "determine_rev_types")
         workflow.add_edge("determine_rev_types", "determine_commodity")
         workflow.add_edge("determine_commodity", "create_tms_request")
         workflow.add_edge("create_tms_request", END)
         
-        # Set entry point
         workflow.set_entry_point("extract_entities")
         
         return workflow.compile()
@@ -87,7 +79,6 @@ class TMSTransformationAgent:
         Returns:
             TMS Order Entry Request
         """
-        # Initialize state
         initial_state = WorkflowState(
             extraction_json=extraction_json,
             entity_mappings={},
@@ -97,12 +88,11 @@ class TMSTransformationAgent:
             tms_request=None
         )
         
-        # Run the workflow
         logger.info("Starting agent-based transformation workflow")
         try:
             final_state = self.workflow.invoke(initial_state)
             
-            # Convert the TMS request dict to a TmsOrderEntryRequest object
+            # Convert to a TmsOrderEntryRequest object
             if final_state["tms_request"]:
                 return TmsOrderEntryRequest(**final_state["tms_request"])
             else:
@@ -169,7 +159,6 @@ class TMSTransformationAgent:
         customer_name = extraction_json.get("customer_name", "Unknown")
         customer_address = extraction_json.get("customer_address", "Unknown")
         
-        # Create prompt for entity extraction
         prompt = f"""
         You are an entity resolution specialist for logistics and transportation.
         Your task is to analyze company names and generate appropriate 4-letter codes
